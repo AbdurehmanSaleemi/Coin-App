@@ -4,17 +4,17 @@ import 'package:flutter/material.dart';
 import 'package:coin_app/assets.dart';
 import 'package:flutter/rendering.dart';
 
-class ChooseSides extends StatefulWidget {
-  const ChooseSides({Key? key}) : super(key: key);
+class SelectCoinSides extends StatefulWidget {
+  const SelectCoinSides({Key? key}) : super(key: key);
 
   @override
-  _ChooseSidesState createState() => _ChooseSidesState();
+  _SelectCoinSidesState createState() => _SelectCoinSidesState();
 }
 
 Color btn1Clr = Colors.transparent;
 Color btn2Clr = Colors.transparent;
 
-class _ChooseSidesState extends State<ChooseSides> {
+class _SelectCoinSidesState extends State<SelectCoinSides> {
   @override
   void dispose() {
     super.dispose();
@@ -50,7 +50,7 @@ class _ChooseSidesState extends State<ChooseSides> {
               Flexible(
                 flex: 1,
                 child: Text(
-                  'WHO IS GOING TO CHOOSE \n THE SIDE FIRST',
+                  'SELECT YOUR SIDES\n',
                   style: TextStyle(
                     fontFamily: sandReg,
                     color: myYellow,
@@ -62,15 +62,15 @@ class _ChooseSidesState extends State<ChooseSides> {
               const SizedBox(
                 height: 100 / 2,
               ),
-              Flexible(flex: 1, child: ElevatedBtn(btnName: 'PLAYER 1')),
+              Flexible(flex: 1, child: ElevatedBtn(btnName: 'HEADS')),
               const SizedBox(
                 height: 50 / 2,
               ),
-              Flexible(flex: 1, child: ElevatedBtn2(btnName: 'PLAYER 2')),
+              Flexible(flex: 1, child: ElevatedBtn2(btnName: ' TAILS ')),
               const SizedBox(
                 height: 190 / 2,
               ),
-              btnConfirm(context: context, btnName: '   DONE   '),
+              btnConfirm(context: context, btnName: ' DONE '),
             ],
           ),
         ),
@@ -100,9 +100,9 @@ class _btnConfirmState extends State<btnConfirm> {
       flex: 1,
       child: ElevatedButton(
         onPressed: () {
-          print(playerOneSelected);
-          print(playerTwoSelected);
-          Navigator.pushNamed(context, '/coinSides');
+          print(heads);
+          print(tails);
+          Navigator.pushNamed(context, '/coin');
         },
         child: Text(
           widget.btnName.toUpperCase(),
@@ -142,13 +142,13 @@ class _ElevatedBtnState extends State<ElevatedBtn> {
       child: ElevatedButton(
         onPressed: () {
           setState(() {
-            if (!isPressed) {
+            if (!isDone) {
               btn1Clr = myYellow;
-              isPressed = true;
-              playerOneSelected = true;
-              playerTwoSelected = false;
-            } else if (isPressed && playerOneSelected) {
-              isPressed = false;
+              isDone = true;
+              heads = true;
+              tails = false;
+            } else if (isDone && heads) {
+              isDone = false;
               btn1Clr = Colors.transparent;
             }
           });
@@ -195,14 +195,14 @@ class _ElevatedBtnState2 extends State<ElevatedBtn2> {
       child: ElevatedButton(
         onPressed: () {
           setState(() {
-            if (!isPressed) {
+            if (!isDone) {
               btn2Clr = myYellow;
-              isPressed = true;
-              playerOneSelected = false;
-              playerTwoSelected = true;
-            } else if (isPressed && playerTwoSelected) {
+              isDone = true;
+              heads = false;
+              tails = true;
+            } else if (isDone && tails) {
               btn2Clr = Colors.transparent;
-              isPressed = false;
+              isDone = false;
             }
           });
         },

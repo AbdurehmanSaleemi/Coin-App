@@ -82,7 +82,7 @@ class _StoreDataState extends State<StoreData> {
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
-                        Navigator.pushReplacementNamed(context, '/sides');
+                        Navigator.pushNamed(context, '/sides');
                         playerOneName = controller1.text;
                         playerTwoName = controller2.text;
                       });

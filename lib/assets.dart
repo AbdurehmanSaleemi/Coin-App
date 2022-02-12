@@ -16,7 +16,10 @@ String playerTwoName = '';
 bool playerOneSide = false;
 bool playerTwoSide = false;
 
-Color borderClr = (playerOneSide == true && playerTwoSide == false) ||
-            (playerOneSide == false && playerTwoSide == true)
-        ? myYellow
-        : Colors.transparent;
+bool isPressed = false;
+bool playerOneSelected = false;
+bool playerTwoSelected = false;
+
+bool isDone = false;
+bool heads = false;
+bool tails = false;
