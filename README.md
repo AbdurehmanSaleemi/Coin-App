@@ -60,8 +60,6 @@ YOU HAVE NOW SUCCESSFULLY BUILT THE APP FROM SCRATCH.
 
 Navigate to <code>lib</code> folder in the project folder or github.
 
-  <br>
-  <br>
 
 ## How App is Working ?
 
