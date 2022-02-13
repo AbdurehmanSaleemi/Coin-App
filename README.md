@@ -1,16 +1,33 @@
-# coin_app
+# Coin App
 
-A new Flutter project.
+Its a toss application based on FLutter Framework
 
 ## Getting Started
+If you want to build this app from the source,
+You need to install Flutter framework and install it in your system path.
 
-This project is a starting point for a Flutter application.
+Here is all the guide you need. <br/>
+https://docs.flutter.dev/get-started/install
 
-A few resources to get you started if this is your first Flutter project:
+## Building App from Code
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+Simply download this repository or clone it.
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Navigate to the downloaded folder (after extracting zip file) <br/>
+
+Run this command <br/>
+
+Replace x with any interger like 1,2,3... <br>
+<code>flutter build apk --build-name=CoinApp --build-number=x</code>
+
+Now navigate to <br/>
+
+<code> build/app/outputs/flutter-apk </code>
+
+YOU HAVE NOW SUCCESSFULLY BUILT THE APP FROM SCRATCH.
+
+## To Just See the Code
+
+Navigate to <code>lib</code> folder in the project folder or github.
+
+## Logic Used to Build the App
