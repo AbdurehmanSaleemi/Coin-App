@@ -47,6 +47,21 @@ class _FlipCoinState extends State<FlipCoin> {
     );
   }
 
+  late Timer _timer;
+
+  _FlipCoinState() {
+    _timer = new Timer(Duration(seconds: 3), () {
+      setState(() {
+        doToss();
+        if (isHeads) {
+          tossResult = 'H E A D S';
+        } else {
+          tossResult = 'T A I L S';
+        }
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,15 +90,55 @@ class _FlipCoinState extends State<FlipCoin> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              Expanded(flex: 3, child: CoinAnimation()),
               SizedBox(height: 100),
+              Expanded(flex: 3, child: CoinAnimation()),
+              SizedBox(height: 120),
               Flexible(
+                flex: 4,
+                child: ElevatedButton(
+                  onPressed: () => setState(() {
+                    tossResult = 'Please Wait';
+                    _timer = new Timer(Duration(seconds: 3), () {
+                      setState(() {
+                        doToss();
+                        if (isHeads) {
+                          tossResult = 'H E A D S';
+                        } else {
+                          tossResult = 'T A I L S';
+                        }
+                      });
+                    });
+                  }),
+                  child: Text(
+                    'Try Again'.toUpperCase(),
+                    style: TextStyle(
+                      color: myYellow,
+                      fontFamily: sandBold,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(50, 30, 50, 30),
+                    primary: lightBlue,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 20,
+              ),
+              Flexible(
+                flex: 4,
                 child: ElevatedButton(
                   onPressed: () {
                     Navigator.pushReplacementNamed(context, '/store');
                   },
                   child: Text(
-                    '    Finish   '.toUpperCase(),
+                    '     Finish   '.toUpperCase(),
                     style: TextStyle(
                       color: myYellow,
                       fontFamily: sandBold,
@@ -117,28 +172,6 @@ class CoinAnimation extends StatefulWidget {
 
 class _CoinAnimationState extends State<CoinAnimation> {
   int click = 0;
-  late Image tmpImg;
-  late Timer _timer;
-
-  _CoinAnimationState() {
-    _timer = new Timer(Duration(seconds: 3), () {
-      setState(() {
-        doToss();
-        if (isHeads) {
-          tossResult = 'H E A D S';
-        } else {
-          tossResult = 'T A I L S';
-        }
-      });
-    });
-  }
-
-  @override
-  void dispose() {
-    super.dispose();
-    _timer.cancel();
-  }
-
   @override
   Widget build(BuildContext context) {
     return AnimatedContainer(
@@ -146,51 +179,14 @@ class _CoinAnimationState extends State<CoinAnimation> {
       duration: Duration(milliseconds: 500),
       child: Column(
         children: [
-          SizedBox(
-            height: 50,
-          ),
-          Text(
-            tossResult,
-            style: TextStyle(
-              fontFamily: sandBold,
-              fontSize: 50,
-              color: myYellow,
-            ),
-          ),
-          SizedBox(
-            height: 50,
-          ),
-          Flexible(
-            child: ElevatedButton(
-              onPressed: () => setState(() {
-                tossResult = 'Please Wait';
-                _timer = new Timer(Duration(seconds: 3), () {
-                  setState(() {
-                    doToss();
-                    if (isHeads) {
-                      tossResult = 'H E A D S';
-                    } else {
-                      tossResult = 'T A I L S';
-                    }
-                  });
-                });
-              }),
-              child: Text(
-                'Try Again'.toUpperCase(),
-                style: TextStyle(
-                  color: myYellow,
-                  fontFamily: sandBold,
-                  fontSize: 25,
-                  letterSpacing: 1,
-                ),
-              ),
-              style: ElevatedButton.styleFrom(
-                padding: const EdgeInsets.fromLTRB(50, 30, 50, 30),
-                primary: lightBlue,
-                elevation: 0,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10),
-                ),
+          Expanded(
+            flex: 1,
+            child: Text(
+              tossResult,
+              style: TextStyle(
+                fontFamily: sandBold,
+                fontSize: 50,
+                color: myYellow,
               ),
             ),
           ),

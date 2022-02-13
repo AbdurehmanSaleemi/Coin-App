@@ -51,7 +51,7 @@ class _StoreDataState extends State<StoreData> {
               height: 150 / 2,
             ),
             Flexible(
-              flex: 4,
+              flex: 6,
               child: SizedBox(
                 width: 300,
                 child: customTextField(
@@ -64,7 +64,7 @@ class _StoreDataState extends State<StoreData> {
               height: 50 / 2,
             ),
             Flexible(
-              flex: 4,
+              flex: 6,
               child: SizedBox(
                 width: 300,
                 child: customTextField(
@@ -74,13 +74,13 @@ class _StoreDataState extends State<StoreData> {
               ),
             ),
             SizedBox(
-              height: 130,
+              height: 160,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-                  flex: 2,
+                  flex: 3,
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -116,7 +116,7 @@ class _StoreDataState extends State<StoreData> {
             ),
             SizedBox(height: 10),
             Flexible(
-              flex: 5,
+              flex: 8,
               child: ElevatedButton(
                 onPressed: () {
                   exit(0);
