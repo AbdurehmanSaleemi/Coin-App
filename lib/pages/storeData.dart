@@ -1,5 +1,7 @@
 // ignore_for_file: prefer_const_constructors, use_key_in_widget_constructors, camel_case_types
 
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:coin_app/assets.dart';
 
@@ -35,7 +37,7 @@ class _StoreDataState extends State<StoreData> {
               height: 150 / 2,
             ),
             Flexible(
-              flex: 1,
+              flex: 4,
               child: Text(
                 'Flip a coin'.toUpperCase(),
                 style: TextStyle(
@@ -46,10 +48,10 @@ class _StoreDataState extends State<StoreData> {
               ),
             ),
             SizedBox(
-              height: 250 / 2,
+              height: 150 / 2,
             ),
             Flexible(
-              flex: 1,
+              flex: 4,
               child: SizedBox(
                 width: 300,
                 child: customTextField(
@@ -62,7 +64,7 @@ class _StoreDataState extends State<StoreData> {
               height: 50 / 2,
             ),
             Flexible(
-              flex: 1,
+              flex: 4,
               child: SizedBox(
                 width: 300,
                 child: customTextField(
@@ -72,13 +74,13 @@ class _StoreDataState extends State<StoreData> {
               ),
             ),
             SizedBox(
-              height: 150,
+              height: 130,
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Flexible(
-                  flex: 1,
+                  flex: 2,
                   child: ElevatedButton(
                     onPressed: () {
                       setState(() {
@@ -107,6 +109,32 @@ class _StoreDataState extends State<StoreData> {
                   ),
                 ),
               ],
+            ),
+            SizedBox(height: 10),
+            Flexible(
+              flex: 5,
+              child: ElevatedButton(
+                onPressed: () {
+                  exit(0);
+                },
+                child: Text(
+                  ' Exit '.toUpperCase(),
+                  style: TextStyle(
+                    color: myYellow,
+                    fontFamily: sandBold,
+                    fontSize: 25,
+                    letterSpacing: 1,
+                  ),
+                ),
+                style: ElevatedButton.styleFrom(
+                  padding: EdgeInsets.fromLTRB(110, 30, 110, 30),
+                  primary: lightBlue,
+                  elevation: 0,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+              ),
             ),
           ],
         ),

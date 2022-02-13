@@ -103,6 +103,9 @@ class _btnConfirmState extends State<btnConfirm> {
           print(heads);
           print(tails);
           Navigator.pushNamed(context, '/coin');
+          setState(() {
+            tossResult = 'Please Wait';
+          });
         },
         child: Text(
           widget.btnName.toUpperCase(),

@@ -1,8 +1,27 @@
-// ignore_for_file: must_be_immutable, use_key_in_widget_constructors, avoid_unnecessary_containers
+// ignore_for_file: must_be_immutable, use_key_in_widget_constructors, avoid_unnecessary_containers, prefer_const_constructors, unnecessary_new
+
+import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:coin_app/assets.dart';
 import 'package:flutter/rendering.dart';
+
+//TOSS FUNCTION
+bool isHeads = false;
+bool isTails = false;
+
+Future<void> doToss() async {
+  Random random = new Random();
+  int number = random.nextInt(50);
+  if (number % 2 == 0) {
+    isHeads = true;
+    isTails = false;
+  } else {
+    isTails = true;
+    isHeads = false;
+  }
+}
 
 class FlipCoin extends StatefulWidget {
   const FlipCoin({Key? key}) : super(key: key);
@@ -17,11 +36,6 @@ Color btn2Clr = Colors.transparent;
 String flipSign = "'";
 
 class _FlipCoinState extends State<FlipCoin> {
-  @override
-  void dispose() {
-    super.dispose();
-  }
-
   Widget logoPrint() {
     return Text(
       'Flip a coin'.toUpperCase(),
@@ -61,10 +75,32 @@ class _FlipCoinState extends State<FlipCoin> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              const SizedBox(
-                height: 100 / 2,
+              Expanded(flex: 3, child: CoinAnimation()),
+              SizedBox(height: 100),
+              Flexible(
+                child: ElevatedButton(
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/store');
+                  },
+                  child: Text(
+                    '    Finish   '.toUpperCase(),
+                    style: TextStyle(
+                      color: myYellow,
+                      fontFamily: sandBold,
+                      fontSize: 25,
+                      letterSpacing: 1,
+                    ),
+                  ),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.fromLTRB(40, 30, 50, 30),
+                    primary: lightBlue,
+                    elevation: 0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
               ),
-              CoinAnimation(),
             ],
           ),
         ),
@@ -75,17 +111,90 @@ class _FlipCoinState extends State<FlipCoin> {
 
 class CoinAnimation extends StatefulWidget {
   const CoinAnimation({Key? key}) : super(key: key);
-
   @override
   _CoinAnimationState createState() => _CoinAnimationState();
 }
 
 class _CoinAnimationState extends State<CoinAnimation> {
+  int click = 0;
+  late Image tmpImg;
+  late Timer _timer;
+
+  _CoinAnimationState() {
+    _timer = new Timer(Duration(seconds: 3), () {
+      setState(() {
+        doToss();
+        if (isHeads) {
+          tossResult = 'H E A D S';
+        } else {
+          tossResult = 'T A I L S';
+        }
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _timer.cancel();
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Flexible(
-        child: Image.asset('assets/coin/tails.png'),
+    return AnimatedContainer(
+      //color: lightBlue,
+      duration: Duration(milliseconds: 500),
+      child: Column(
+        children: [
+          SizedBox(
+            height: 50,
+          ),
+          Text(
+            tossResult,
+            style: TextStyle(
+              fontFamily: sandBold,
+              fontSize: 50,
+              color: myYellow,
+            ),
+          ),
+          SizedBox(
+            height: 50,
+          ),
+          Flexible(
+            child: ElevatedButton(
+              onPressed: () => setState(() {
+                tossResult = 'Please Wait';
+                _timer = new Timer(Duration(seconds: 3), () {
+                  setState(() {
+                    doToss();
+                    if (isHeads) {
+                      tossResult = 'H E A D S';
+                    } else {
+                      tossResult = 'T A I L S';
+                    }
+                  });
+                });
+              }),
+              child: Text(
+                'Try Again'.toUpperCase(),
+                style: TextStyle(
+                  color: myYellow,
+                  fontFamily: sandBold,
+                  fontSize: 25,
+                  letterSpacing: 1,
+                ),
+              ),
+              style: ElevatedButton.styleFrom(
+                padding: const EdgeInsets.fromLTRB(50, 30, 50, 30),
+                primary: lightBlue,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(10),
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

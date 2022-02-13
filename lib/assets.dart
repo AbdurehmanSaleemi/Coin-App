@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 // fonts
@@ -23,3 +25,8 @@ bool playerTwoSelected = false;
 bool isDone = false;
 bool heads = false;
 bool tails = false;
+
+Image headsImg = Image.asset('assets/coin/heads.png');
+Image tailsImg = Image.asset('assets/coin/tails.png');
+
+String tossResult = 'Please Wait';
