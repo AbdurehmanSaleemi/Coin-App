@@ -90,7 +90,7 @@ class _FlipCoinState extends State<FlipCoin> {
                   textAlign: TextAlign.center,
                 ),
               ),
-              SizedBox(height: 100),
+              SizedBox(height: 120),
               Expanded(flex: 3, child: CoinAnimation()),
               SizedBox(height: 120),
               Flexible(
@@ -129,7 +129,7 @@ class _FlipCoinState extends State<FlipCoin> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: 10,
               ),
               Flexible(
                 flex: 4,
