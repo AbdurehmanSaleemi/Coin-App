@@ -100,9 +100,9 @@ class _btnConfirmState extends State<btnConfirm> {
       flex: 1,
       child: ElevatedButton(
         onPressed: () {
-          print(heads);
-          print(tails);
-          Navigator.pushNamed(context, '/coin');
+          if (isDone) {
+            Navigator.pushNamed(context, '/coin');
+          }
           setState(() {
             tossResult = 'Please Wait';
           });

@@ -62,11 +62,11 @@ class _ChooseSidesState extends State<ChooseSides> {
               const SizedBox(
                 height: 100 / 2,
               ),
-              Flexible(flex: 1, child: ElevatedBtn(btnName: 'PLAYER 1')),
+              Flexible(flex: 1, child: ElevatedBtn(btnName: nameOfPlayerOne)),
               const SizedBox(
                 height: 50 / 2,
               ),
-              Flexible(flex: 1, child: ElevatedBtn2(btnName: 'PLAYER 2')),
+              Flexible(flex: 1, child: ElevatedBtn2(btnName: nameOfPlayerTwo)),
               const SizedBox(
                 height: 190 / 2,
               ),
@@ -100,9 +100,11 @@ class _btnConfirmState extends State<btnConfirm> {
       flex: 1,
       child: ElevatedButton(
         onPressed: () {
-          print(playerOneSelected);
-          print(playerTwoSelected);
-          Navigator.pushNamed(context, '/coinSides');
+          if (isPressed) {
+            print(playerOneSelected);
+            print(playerTwoSelected);
+            Navigator.pushNamed(context, '/coinSides');
+          }
         },
         child: Text(
           widget.btnName.toUpperCase(),

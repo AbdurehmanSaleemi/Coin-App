@@ -30,3 +30,6 @@ Image headsImg = Image.asset('assets/coin/heads.png');
 Image tailsImg = Image.asset('assets/coin/tails.png');
 
 String tossResult = 'Please Wait';
+
+String nameOfPlayerOne = '';
+String nameOfPlayerTwo = '';

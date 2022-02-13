@@ -80,7 +80,7 @@ class _FlipCoinState extends State<FlipCoin> {
               Flexible(
                 child: ElevatedButton(
                   onPressed: () {
-                    Navigator.popAndPushNamed(context, '/store');
+                    Navigator.pushReplacementNamed(context, '/store');
                   },
                   child: Text(
                     '    Finish   '.toUpperCase(),

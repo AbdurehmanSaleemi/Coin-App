@@ -9,7 +9,7 @@ import 'package:coin_app/pages/coinSides.dart';
 void main() {
   runApp(MaterialApp(
     debugShowCheckedModeBanner: false,
-    initialRoute: '/coin',
+    initialRoute: '/',
     routes: {
       '/': (context) => const SplashScreen(),
       '/store': (context) => const StoreData(),
